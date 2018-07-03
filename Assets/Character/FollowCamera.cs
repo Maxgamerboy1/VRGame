@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FollowCamera : MonoBehaviour
+{
+
+    SteamVR_Camera Camera { get { return GetComponentInParent<MeshRenderer>().GetComponentInChildren<SteamVR_Camera>(); } }
+    SteamVR_TrackedObject trackedObj;
+
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        var newPos = new Vector3(Camera.head.position.x, Camera.head.position.y, Camera.head.position.z);
+        newPos.Set(newPos.x, newPos.y - 1.92F, newPos.z);
+        trackedObj.transform.SetPositionAndRotation(newPos, Camera.head.rotation);
+    }
+}
