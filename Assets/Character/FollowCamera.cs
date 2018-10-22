@@ -6,7 +6,7 @@ public class FollowCamera : MonoBehaviour
 {
 
     SteamVR_Camera Camera { get { return GetComponentInParent<MeshRenderer>().GetComponentInChildren<SteamVR_Camera>(); } }
-    SteamVR_TrackedObject trackedObj;
+    public GameObject fullBodyMesh;
 
     // Use this for initialization
     void Start()
@@ -17,7 +17,7 @@ public class FollowCamera : MonoBehaviour
     void Update()
     {
         var newPos = new Vector3(Camera.head.position.x, Camera.head.position.y, Camera.head.position.z);
-        newPos.Set(newPos.x, newPos.y - 1.92F, newPos.z);
-        trackedObj.transform.SetPositionAndRotation(newPos, Camera.head.rotation);
+        newPos.Set(newPos.x, newPos.y, newPos.z);
+        fullBodyMesh.transform.SetPositionAndRotation(newPos, Camera.head.rotation);
     }
 }
